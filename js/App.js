@@ -7,13 +7,10 @@ const newBookForm = document.forms[0];
 /** Library */
 const library = [];
 
-function Book(title, author, pages, read) {
-  this.id = `${title.toLowerCase().split(' ').join('-')}-${author.toLowerCase().split(' ').join('-')}`;
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.addedToView = false;
+const Book = (title, author, pages, read) =>{
+  let id = `${title.toLowerCase().split(' ').join('-')}-${author.toLowerCase().split(' ').join('-')}`;
+  let addedToView = false;
+  return {id,title, author, pages, read, addedToView}
 }
 /** function to insert the data into the table */
 const render = (newBook) => {
@@ -111,7 +108,7 @@ newBookForm.addEventListener('submit', (event) => {
   } else {
     read = false;
   }
-  const newBook = new Book(title, author, pages, read);
+  const newBook = Book(title, author, pages, read);
   addBookToLibrary(newBook);
 });
 
